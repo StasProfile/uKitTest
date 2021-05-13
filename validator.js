@@ -5,7 +5,18 @@ function validateInputArea(ceiling) {
     let number = Number(inputArea.value);
 
     if (Number.isNaN(number)) {
-        inputArea.value = '';
+        str = inputArea.value;
+        for (const c of str){
+            if (c === '.') {
+                continue;
+            }
+            const digit = Number(c);
+            if (Number.isNaN(digit)) {
+                inputArea.value = str.slice(0, str.indexOf(c))
+                .concat(str.slice(str.indexOf(c) + 1, str.length));
+            }
+        }
+        
     }
 
     if (inputArea.value.startsWith('00')) {
@@ -33,6 +44,10 @@ function validateInputArea(ceiling) {
 
     if (inputArea.value.indexOf('.') !== (inputArea.value.length - 2) && inputArea.value.endsWith('0')) {
         inputArea.value = number;
+    }
+
+    if ((inputArea.value.indexOf('0') === 0 && inputArea.value.indexOf('.') !== 1) && inputArea.value.indexOf('.') !== -1){
+        inputArea.value = inputArea.value.slice(1, inputArea.length)
     }
 } 
 
