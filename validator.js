@@ -45,8 +45,8 @@ function validateInputArea(ceiling){
         }
     }
 
-    if ((inputArea.value.indexOf('0') === 0 && inputArea.value.indexOf('.') !== 1) && inputArea.value.indexOf('.') !== -1){
-        inputArea.value = inputArea.value.slice(1, inputArea.length)
+    if (inputArea.value.indexOf('0') === 0 && inputArea.value.length > 1 && inputArea.value[1] !== '.'){
+        inputArea.value = inputArea.value.slice(1, inputArea.length);
     }
     
     while (inputArea.value.startsWith('00')) {
